@@ -12,19 +12,14 @@
     .hidden {
       display: none;
     }
-    .fancy-arrow-list li {
-      position: relative;
-      padding-left: 1.5em;
-      margin-left: 0;
-    }
 
-    .fancy-arrow-list li::before {
-      content: '➤'; 
-      position: absolute;
-      left: 0;
-      color: #4FD1C5; 
-      font-size: 1.2em; 
-      line-height: 1; 
+    @media (min-width: 768px) {
+      .achievement-image {
+        background-image: url('../assets/achievement/target-8510084_1280.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 400px; 
+      }
     }
   </style>
 </head>
