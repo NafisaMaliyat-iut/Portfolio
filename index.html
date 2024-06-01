@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nafisa Maliyat | Portfolio</title>
+  <link rel="icon" href="assets/logo.jpg" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <style>
+    .hidden {
+      display: none;
+    }
+    .fancy-arrow-list li {
+      position: relative;
+      padding-left: 1.5em;
+      margin-left: 0;
+    }
+
+    .fancy-arrow-list li::before {
+      content: '➤'; 
+      position: absolute;
+      left: 0;
+      color: #4FD1C5; 
+      font-size: 1.2em; 
+      line-height: 1; 
+    }
+  </style>
+</head>
+
+<body>
+  <section id="navbar"  class="sticky top-0 backdrop-filter backdrop-blur-sm z-50"></section>
+  <section id="home"></section>
+  <section id="skills"></section>
+  <section id="projects"></section>
+  <section id="achievements"></section>
+  <section id="contact"></section>
+  <script>
+    function initializeHamburgerMenu() {
+      const hamburgerButton = document.getElementById('hamburger-button');
+      const navMenu = document.getElementById('nav-menu');
+      const hamburgerIconOpen = document.getElementById('hamburger-icon-open');
+      const hamburgerIconClose = document.getElementById('hamburger-icon-close');
+
+      if (hamburgerButton && navMenu && hamburgerIconOpen && hamburgerIconClose) {
+        hamburgerButton.addEventListener('click', function() {
+          if (navMenu.classList.contains('hidden')) {
+            navMenu.classList.remove('hidden');
+            navMenu.classList.add('flex');
+            hamburgerIconOpen.classList.add('hidden');
+            hamburgerIconClose.classList.remove('hidden');
+          } else {
+            navMenu.classList.remove('flex');
+            navMenu.classList.add('hidden');
+            hamburgerIconOpen.classList.remove('hidden');
+            hamburgerIconClose.classList.add('hidden');
+          }
+        });
+      } else {
+        console.error('Error initializing hamburger menu: elements not found.');
+      }
+    }
+
+    function fetchComponent(componentName, callback) {
+      fetch(`components/${componentName}.html`)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById(componentName).innerHTML = data;
+          if (callback) callback();
+        })
+        .catch(error => console.error(`Error loading ${componentName}:`, error));
+    }
+
+    fetchComponent('navbar', initializeHamburgerMenu);
+    fetchComponent('home');
+    fetchComponent('skills');
+    fetchComponent('projects');
+    fetchComponent('achievements');
+    fetchComponent('contact');
+  </script>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>
